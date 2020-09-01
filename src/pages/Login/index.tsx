@@ -24,7 +24,7 @@ const Login: React.FC = () => {
   const [loginInfo, setLoginInfo] = useState({});
   const { handleAuth } = useAuth();
 
-  const baseUrl = 'http://localhost:3333/sessions';
+  const baseUrl = 'https://minidiaryback.herokuapp.com/sessions';
   const history = useHistory();
 
   const handleChange = useCallback(

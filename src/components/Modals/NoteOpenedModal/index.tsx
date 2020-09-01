@@ -22,7 +22,7 @@ const NoteOpenedModal: React.FC<NoteProps> = ({
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [, setNotes] = useState<NoteProps[]>([]);
 
-  const baseUrl = 'http://localhost:3333/notes';
+  const baseUrl = 'https://minidiaryback.herokuapp.com/notes';
 
   const fetchNote = async () => {
     try {

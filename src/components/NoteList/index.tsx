@@ -11,7 +11,7 @@ const NoteList: React.FC = () => {
   const [notes, setNotes] = useState<NoteProps[]>([]);
   const [hasNote, setHasNote] = useState(false);
 
-  const baseUrl = 'http://localhost:3333/notes';
+  const baseUrl = 'https://minidiaryback.herokuapp.com/notes';
 
   const fetchNotes = async () => {
     try {

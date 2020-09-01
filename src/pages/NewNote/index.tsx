@@ -11,7 +11,7 @@ import NotificationModal from '../../components/Modals/NotificationModal';
 const NewNote: React.FC = () => {
   const [notification, setNotification] = useState(false);
 
-  const baseUrl = 'http://localhost:3333/notes';
+  const baseUrl = 'https://minidiaryback.herokuapp.com/notes';
 
   const handleSubmit = async (body: object) => {
     try {
