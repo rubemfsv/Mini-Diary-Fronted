@@ -11,7 +11,7 @@ export const Container = styled.div`
 export const Card = styled.div`
   position: relative;
   width: 448px;
-  height: 408px;
+  height: 430px;
   top: 156px;
 
   border: 1px solid var(--color-black);
