@@ -1,18 +1,20 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { FaPen, FaTrash } from 'react-icons/fa';
+import { FaTrash } from 'react-icons/fa';
 
 export const Container = styled.div`
   margin-right: 22px;
 `;
 
 export const Card = styled.div`
-  max-width: 281px;
+  width: 350px;
+  padding: 10px;
   height: 420px;
   display: flex;
   flex-flow: column;
   line-height: 24px;
   margin-bottom: 32px;
+  border: 1px solid var(--color-black);
 `;
 
 export const ClickArea = styled.div`
@@ -33,6 +35,7 @@ export const Name = styled.div`
   font-family: Montserrat;
   font-style: normal;
 
+  limit-content: 300px;
   margin-top: 10px;
   font-weight: 600;
   font-size: 16px;

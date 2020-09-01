@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { setToken } from '../../services/auth';
+import { setToken, setUserId } from '../../services/auth';
 import { useAuth } from '../../contexts/auth';
 
 import GlobalStyles from '../../styles/GlobalStyles';
@@ -46,10 +46,11 @@ const Login: React.FC = () => {
       },
       body: JSON.stringify(loginInfo),
     });
-
     if (response.status === 200) {
-      const { token } = await response.json();
+      const { token, user } = await response.json();
+      const { id } = user;
       setToken(token);
+      setUserId(id);
       handleAuth(true);
       history.push('/');
       history.go(0);

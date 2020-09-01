@@ -1,7 +1,10 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { useState, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { FormProps } from '../../interfaces/index';
+import { getUserId } from '../../services/auth';
 
 import {
   Container,
@@ -10,20 +13,24 @@ import {
   BackIcon,
   Title,
   Body,
-  Row,
   InputContainer,
   ButtonContainer,
   ButtonForm,
 } from './styles';
 
-type EventType = React.ChangeEvent<HTMLInputElement>;
+type EventType = React.ChangeEvent<HTMLTextAreaElement>;
 
 const initialState = {
+  user_id: getUserId(),
   text: '',
 };
 
-const Form: React.FC<FormProps> = ({ title, naverData, onSubmit }) => {
-  const [naverInfo, setNaverInfo] = useState(initialState);
+const Form: React.FC<FormProps> = ({
+  title,
+  userData,
+  onSubmit,
+}: FormProps) => {
+  const [userInfo, setUserInfo] = useState(initialState);
 
   const history = useHistory();
 
@@ -34,17 +41,15 @@ const Form: React.FC<FormProps> = ({ title, naverData, onSubmit }) => {
 
   function handleChange(event: EventType) {
     event.persist();
-    console.log(event.target.value);
-    setNaverInfo(() => ({
-      ...naverInfo,
+    setUserInfo(() => ({
+      ...userInfo,
       [event.target.name]: event.target.value,
     }));
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(naverInfo);
-    onSubmit(naverInfo);
+    onSubmit(userInfo);
   }
 
   return (
@@ -55,19 +60,16 @@ const Form: React.FC<FormProps> = ({ title, naverData, onSubmit }) => {
           <Title>{title}</Title>
         </Header>
         <Body onSubmit={handleSubmit}>
-          <Row>
-            <InputContainer>
-              <label htmlFor="text">Texto</label>
-              <input
-                name="text"
-                type="text"
-                id="name"
-                placeholder="Texto"
-                defaultValue={naverData?.text}
-                onChange={handleChange}
-              />
-            </InputContainer>
-          </Row>
+          <InputContainer>
+            <label htmlFor="text">Anotação</label>
+            <textarea
+              name="text"
+              id="name"
+              placeholder="Escreva aqui um pensamento"
+              defaultValue={userData?.text}
+              onChange={handleChange}
+            />
+          </InputContainer>
           <ButtonContainer>
             <ButtonForm type="submit">Salvar</ButtonForm>
           </ButtonContainer>

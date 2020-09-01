@@ -7,3 +7,12 @@ export const getToken = () => {
     JSON.parse(localStorage.getItem('@Auth:token') as string) || {};
   if (token) return token;
 };
+
+export const setUserId = (id: string) => {
+  localStorage.setItem('@Auth:id', JSON.stringify({ id }));
+};
+
+export const getUserId = () => {
+  const { id } = JSON.parse(localStorage.getItem('@Auth:id') as string) || {};
+  if (id) return id;
+};

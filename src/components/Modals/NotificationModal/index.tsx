@@ -6,7 +6,7 @@ import { NotificationProps } from '../../../interfaces/index';
 import { Container, Filter, Header, Title, Warning, Close } from './styles';
 
 const NotificationModal: React.FC<NotificationProps> = ({ title, message }) => {
-  const [isModalDeleted, setIsModalDeleted] = useState(true);
+  const [isModalDeleted] = useState(true);
 
   const history = useHistory();
 

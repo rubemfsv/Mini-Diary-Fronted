@@ -2,7 +2,7 @@ import React from 'react';
 
 import Navbar from '../../components/Navbar';
 import Header from '../../components/Header';
-import NaverList from '../../components/NaverList';
+import NoteList from '../../components/NoteList';
 
 import GlobalStyles from '../../styles/GlobalStyles';
 
@@ -13,7 +13,7 @@ const Home: React.FC = () => {
     <Container>
       <Navbar />
       <Header />
-      <NaverList />
+      <NoteList />
       <GlobalStyles />
     </Container>
   );

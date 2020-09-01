@@ -57,17 +57,10 @@ export const Body = styled.form`
   margin-top: 35px;
 `;
 
-export const Row = styled.div`
-  display: flex;
-  margin-top: 10px;
-`;
-
 export const InputContainer = styled.div`
-  margin-top: -5px;
-
-  > input {
-    width: 280px;
-    height: 40px;
+  > textarea {
+    width: 590px;
+    height: 190px;
     margin-top: 5px;
     margin-bottom: 25px;
     margin-right: 32px;
@@ -96,7 +89,7 @@ export const InputContainer = styled.div`
 export const ButtonContainer = styled.div`
   width: 176px;
   height: 40px;
-  margin-left: 416px;
+  margin-left: 210px;
 `;
 
 export const ButtonForm = styled.button`

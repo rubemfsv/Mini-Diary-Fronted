@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import DeleteOpenedModal from '../DeleteOpenedModal';
 import fetch from '../../../services/api';
-import { NaverProps } from '../../../interfaces/index';
+import { NoteProps } from '../../../interfaces/index';
 
 import {
   Container,
@@ -15,16 +14,17 @@ import {
   Filter,
 } from './styles';
 
-const NaverOpenedModal: React.FC<NaverProps> = ({ id, user_id, text }) => {
-  const [isNaverModalOpen, setIsNaverModalOpen] = useState(true);
+const NoteOpenedModal: React.FC<NoteProps> = ({
+  id,
+  text,
+}: NoteProps) => {
+  const [isNoteModalOpen, setIsNoteModalOpen] = useState(true);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [navers, setNavers] = useState<NaverProps[]>([]);
+  const [, setNotes] = useState<NoteProps[]>([]);
 
   const baseUrl = 'http://localhost:3333/notes';
 
-  const history = useHistory();
-
-  const fetchNaver = async () => {
+  const fetchNote = async () => {
     try {
       const response = await fetch(`${baseUrl}`);
       const data = await response.json();
@@ -34,22 +34,22 @@ const NaverOpenedModal: React.FC<NaverProps> = ({ id, user_id, text }) => {
     }
   };
 
-  const handleDeleteNaver = async (id: string | number) => {
+  const handleDeleteNote = async (id: string | number) => {
     try {
       await fetch(`${baseUrl}/${id}`, 'DELETE');
-      setNavers(await fetchNaver());
+      setNotes(await fetchNote());
     } catch (err) {
       console.error(err);
     }
   };
 
-  function handleNaverModal() {
-    setIsNaverModalOpen(!isNaverModalOpen);
+  function handleNoteModal() {
+    setIsNoteModalOpen(!isNoteModalOpen);
   }
 
   function handleDeleteModal() {
     setIsDeleteModalOpen(!isDeleteModalOpen);
-    handleNaverModal();
+    handleNoteModal();
   }
 
   return (
@@ -57,19 +57,20 @@ const NaverOpenedModal: React.FC<NaverProps> = ({ id, user_id, text }) => {
       {isDeleteModalOpen && (
         <DeleteOpenedModal
           id={id as string}
-          handleDeleteNaver={handleDeleteNaver}
+          handleDeleteNote={handleDeleteNote}
         />
       )}
 
-      {isNaverModalOpen && (
+      {isNoteModalOpen && (
         <Filter>
           <Container>
             <CardInfo>
-              <Close onClick={() => handleNaverModal()} />
-              <Position>{text}</Position>
               <ButtonsContainer>
                 <DeleteIcon onClick={() => handleDeleteModal()} />
+                <Close onClick={() => handleNoteModal()} />
               </ButtonsContainer>
+
+              <Position>{text}</Position>
             </CardInfo>
           </Container>
         </Filter>
@@ -78,4 +79,4 @@ const NaverOpenedModal: React.FC<NaverProps> = ({ id, user_id, text }) => {
   );
 };
 
-export default NaverOpenedModal;
+export default NoteOpenedModal;

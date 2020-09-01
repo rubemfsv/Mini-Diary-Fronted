@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaPen, FaTrash, FaTimes } from 'react-icons/fa';
+import { FaTrash, FaTimes } from 'react-icons/fa';
 
 export const Filter = styled.div`
 ::after {
@@ -84,7 +84,7 @@ export const InfoContent = styled.div`
 export const Close = styled(FaTimes)`
   display: flex;
   align-items: right;
-  margin-left: 420px;
+  margin-left: 20px;
 
   transition: opacity 0.2s;
   &:hover {
@@ -94,14 +94,13 @@ export const Close = styled(FaTimes)`
 `;
 
 export const ButtonsContainer = styled.div`
-  margin-top: 130px;
   display: flex;
 `;
 
 export const DeleteIcon = styled(FaTrash)`
-  height: 18px;
-  width: 18px;
-  margin-right: 10px;
+  display: flex;
+  align-items: right;
+  margin-left: 420px;
 
   transition: opacity 0.2s;
   &:hover {

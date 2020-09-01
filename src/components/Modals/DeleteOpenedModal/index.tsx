@@ -17,8 +17,8 @@ import {
 
 const DeleteOpenedModal: React.FC<DeleteProps> = ({
   id,
-  handleDeleteNaver,
-}) => {
+  handleDeleteNote,
+}: DeleteProps) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(true);
   const [isModalDeleted, setIsModalDeleted] = useState(false);
 
@@ -27,7 +27,7 @@ const DeleteOpenedModal: React.FC<DeleteProps> = ({
   }
 
   function handleDeleteConfirmation() {
-    handleDeleteNaver(id);
+    handleDeleteNote(id);
     setIsModalDeleted(!isModalDeleted);
     setIsDeleteModalOpen(!isDeleteModalOpen);
   }
@@ -36,8 +36,8 @@ const DeleteOpenedModal: React.FC<DeleteProps> = ({
     <>
       {isModalDeleted && (
         <NotificationModal
-          title="Naver excluído"
-          message="Naver excluído com sucesso!"
+          title="Feito!"
+          message="Anotação excluída com sucesso!"
         />
       )}
 
@@ -45,9 +45,9 @@ const DeleteOpenedModal: React.FC<DeleteProps> = ({
         <Filter>
           <Container>
             <Header>
-              <Title>Excluir Naver</Title>
+              <Title>Excluir Anotação</Title>
             </Header>
-            <Warning>Tem certeza que deseja excluir este Naver?</Warning>
+            <Warning>Tem certeza que deseja excluir esta anotação?</Warning>
             <ButtonsContainer>
               <CancelButton onClick={() => handleDeleteModal()}>
                 Cancelar

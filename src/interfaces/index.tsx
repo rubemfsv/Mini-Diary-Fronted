@@ -1,13 +1,12 @@
 /* eslint-disable camelcase */
-export interface NaverProps {
+export interface NoteProps {
   id?: string;
-  user_id?: string;
   text: string;
 }
 
 export interface FormProps {
   title: string;
-  naverData?: NaverProps;
+  userData?: NoteProps;
   onSubmit(body: object): void;
 }
 
@@ -29,5 +28,5 @@ export interface NotificationProps {
 
 export interface DeleteProps {
   id: string;
-  handleDeleteNaver(id?: string | number): Promise<void>;
+  handleDeleteNote(id?: string | number): Promise<void>;
 }

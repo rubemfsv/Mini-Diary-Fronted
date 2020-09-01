@@ -4,17 +4,17 @@ import { FaTimes } from 'react-icons/fa';
 export const Filter = styled.div`
 ::after {
   content: "";
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 `;
 
 export const Container = styled.div`
-  position: absolute;
+  position: fixed;
   width: 592px;
   height: 160px;
   left: 344px;
@@ -61,8 +61,9 @@ export const Warning = styled.div`
 
 export const Close = styled(FaTimes)`
   display: flex;
+  position: fixed;
   align-items: right;
-  margin-left: 340px;
+  margin-left: 510px;
   height: 14px;
   width: 14px;
 

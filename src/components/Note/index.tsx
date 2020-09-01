@@ -1,32 +1,30 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
-import NaverOpenedModal from '../Modals/NaverOpenedModal';
+import NoteOpenedModal from '../Modals/NoteOpenedModal';
 import DeleteOpenedModal from '../Modals/DeleteOpenedModal';
 
-import { NaverProps } from '../../interfaces/index';
+import { NoteProps } from '../../interfaces/index';
 import fetch from '../../services/api';
 
 import {
   Container,
   Card,
   ClickArea,
-  Image,
   Name,
-  Position,
   ButtonsContainer,
   DeleteIcon,
 } from './styles';
 
-const Naver: React.FC<NaverProps> = ({ id, user_id, text }) => {
-  const [isNaverModalOpen, setIsNaverModalOpen] = useState(false);
+const Note: React.FC<NoteProps> = ({ id, text }: NoteProps) => {
+  const [isNoteModalOpen, setIsNoteModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [navers, setNavers] = useState<NaverProps[]>([]);
+  const [, setNotes] = useState<NoteProps[]>([]);
 
   const baseUrl = 'http://localhost:3333/notes';
-  const history = useHistory();
 
-  const fetchNaver = async () => {
+  const fetchNote = async () => {
     try {
       const response = await fetch(`${baseUrl}`);
       const data = await response.json();
@@ -37,17 +35,17 @@ const Naver: React.FC<NaverProps> = ({ id, user_id, text }) => {
     }
   };
 
-  const handleDeleteNaver = async (id: string | number) => {
+  const handleDeleteNote = async () => {
     try {
       await fetch(`${baseUrl}/${id}`, 'DELETE');
-      setNavers(await fetchNaver());
+      setNotes(await fetchNote());
     } catch (err) {
       console.error(err);
     }
   };
 
-  function handleNaverModal() {
-    setIsNaverModalOpen(!isNaverModalOpen);
+  function handleNoteModal() {
+    setIsNoteModalOpen(!isNoteModalOpen);
   }
 
   function handleDeleteModal() {
@@ -56,26 +54,26 @@ const Naver: React.FC<NaverProps> = ({ id, user_id, text }) => {
 
   return (
     <>
-      {isNaverModalOpen && <NaverOpenedModal id={id} text={text} />}
+      {isNoteModalOpen && <NoteOpenedModal id={id} text={text} />}
       {isDeleteModalOpen && (
         <DeleteOpenedModal
           id={id as string}
-          handleDeleteNaver={handleDeleteNaver}
+          handleDeleteNote={handleDeleteNote}
         />
       )}
 
       <Container>
         <Card>
-          <ClickArea onClick={() => handleNaverModal()}>
-            <Name>{text}</Name>
-          </ClickArea>
           <ButtonsContainer>
             <DeleteIcon onClick={() => handleDeleteModal()} />
           </ButtonsContainer>
+          <ClickArea onClick={() => handleNoteModal()}>
+            <Name>{text}</Name>
+          </ClickArea>
         </Card>
       </Container>
     </>
   );
 };
 
-export default Naver;
+export default Note;

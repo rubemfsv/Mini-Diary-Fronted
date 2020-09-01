@@ -8,7 +8,7 @@ import Navbar from '../../components/Navbar';
 import Form from '../../components/Form';
 import NotificationModal from '../../components/Modals/NotificationModal';
 
-const NewNaver: React.FC = () => {
+const NewNote: React.FC = () => {
   const [notification, setNotification] = useState(false);
 
   const baseUrl = 'http://localhost:3333/notes';
@@ -37,4 +37,4 @@ const NewNaver: React.FC = () => {
   );
 };
 
-export default NewNaver;
+export default NewNote;

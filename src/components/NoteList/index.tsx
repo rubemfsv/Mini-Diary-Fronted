@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
 
-import Naver from '../Naver';
+import Note from '../Note';
 
 import fetch from '../../services/api';
-import { NaverProps } from '../../interfaces/index';
+import { NoteProps } from '../../interfaces/index';
 
 import { Container } from './styles';
 
-const NaverList: React.FC = () => {
-  const [navers, setNavers] = useState<NaverProps[]>([]);
-  const [hasNaver, setHasNaver] = useState(false);
+const NoteList: React.FC = () => {
+  const [notes, setNotes] = useState<NoteProps[]>([]);
+  const [hasNote, setHasNote] = useState(false);
 
   const baseUrl = 'http://localhost:3333/notes';
 
-  const fetchNavers = async () => {
+  const fetchNotes = async () => {
     try {
-      setHasNaver(true);
+      setHasNote(true);
       const response = await fetch(`${baseUrl}`);
       const data = await response.json();
-      setHasNaver(false);
+      setHasNote(false);
       return data;
     } catch (err) {
       console.error(err);
@@ -27,16 +27,16 @@ const NaverList: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      setNavers(await fetchNavers());
+      setNotes(await fetchNotes());
     })();
   }, []);
 
   return (
     <Container>
-      {!hasNaver ? (
+      {!hasNote ? (
         <>
-          {navers?.map((user) => (
-            <Naver key={user.id} id={user.id} text={user.text} />
+          {notes?.map((note) => (
+            <Note key={note.id} id={note.id} text={note.text} />
           ))}
         </>
       ) : (
@@ -46,4 +46,4 @@ const NaverList: React.FC = () => {
   );
 };
 
-export default NaverList;
+export default NoteList;
